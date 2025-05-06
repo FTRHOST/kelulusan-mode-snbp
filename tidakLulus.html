@@ -1,0 +1,95 @@
+<html lang="id"><head>
+    <meta charset="utf-8">
+    <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+    <meta name="dcterms.rightsHolder" content="Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi (Kemdikbud)">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="scaffolded-by" content="https://github.com/google/stagehand">
+    <title>Tidak LULUS</title>
+    <link rel="stylesheet" href="/css/index.css?v=2025.0.40">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+    <link rel="icon" href="/img/logo-manu.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <script defer="" src="/js/main.dart.js?v=2025.0.40"></script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-W71GDRG0K0"></script>
+    <script>
+async function fetchStudentData(nis) {
+    try {
+      const response = await fetch('http://localhost:3000/students/' + nis);
+      if (!response.ok) {
+        throw new Error('Student not found');
+      }
+      const student = await response.json();
+      document.getElementById('index-accepted-nisn').textContent = 'NISN ' + student.nis;
+      document.getElementById('index-accepted-name').textContent = student.name;
+      document.getElementById('index-accepted-program').textContent = student.jurusan;
+      document.getElementById('index-accepted-birthday').textContent = student.birthday;
+      document.getElementById('index-accepted-school').textContent = student.school;
+      document.getElementById('index-accepted-regency').textContent = student.regency;
+      document.getElementById('index-accepted-province').textContent = student.province;
+    } catch (error) {
+      console.error(error);
+      alert('Data tidak ditemukan.');
+    }
+  }
+
+  function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+  }
+
+  const nis = getQueryParam('nis');
+  if (nis) {
+    fetchStudentData(nis);
+  } else {
+    alert('NIS tidak ditemukan di URL.');
+  }
+    </script>
+</head>
+
+<body id="body"><div id="main" class="main">
+        <div id="main-background" class="main-background"></div>
+        <div id="main-route" class="main-route"><div id="index" class="index"><div id="index-rejected" class="index-rejected">
+        <div class="index-rejected-header">
+            <img src="/img/logo-manu.png" alt="Logo" class="index-rejected-header-icon">
+            <div class="header-title">
+                <h1 class="index-rejected-header-title-text">ANDA DINYATAKAN TIDAK LULUS MA NU 01 BANYUPUTIH</h1>
+                <span class="index-rejected-header-title-sub">MASIH ADA KESEMPATAN UNTUK MENGIKUTI UJIAN TAHUN DEPAN. SEMANGAT</span>
+            </div>
+        </div>
+        <div class="index-rejected-content">
+            <div class="index-rejected-content-upper">
+                <div class="index-accepted-content-upper-bio">
+                    <span class="index-accepted-content-upper-bio-nisn" id="index-accepted-nisn">NISN ...</span>
+                    <span class="index-accepted-content-upper-bio-name" id="index-accepted-name">Loading...</span>
+                    <span class="index-accepted-content-upper-bio-program" id="index-accepted-program">Loading...</span>
+                </div>
+                <!-- <img class="index-accepted-content-upper-qr" alt="QR" id="index-accepted-qr" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADkAAAA5AQMAAAC21hHGAAAABlBMVEX///8AAABVwtN+AAABwklEQVR4nIyR3UtTcQCGn7Ps7Gyn7UArmFYQM2gxCfKiqzqNLqxlXWSFqy4Cgxh4E1ExKFK2grJGMhEyKtZMW9vg1EUxSJYV1oEK1gfNiyLLZEv6uIjBD5OU8x/svXnfu5eHh3qi/R4I/W8XoAT2qP45BdTbZfvepiqouUynd7k1jB1PRmJVUDY8P3rVp4A2m81mcwKQKr5I1Op1G88lnk6Ca2Xtb1SaBPvCp8NtIgzOCx875stB0O5PvClVTFh2ICC8n6OgnTi2IvcsA7wtKsOPx8Ghz7a8elEC983U+XhSgGt6vCWZL4B0+VvkRy0FdOu+UiUIctNoQ+igF9zC7Bn+Yp1eutecv9YLSzL7ul9f7wVb4kjX+/AUyP+6dMnoBzy3+kdiYXAXHxjbZlJg8zgGx1r94Exv6twZFyCtSj6ckAXIm3fpBZ8JS9+1b2lMBMF25sbul4f84Aqdsq/uA9StbfNDsQxo8bGe0Y4oNJz9Fdj/KAJ258/yle3HwR1IFtcYFqkj3DxYvQja1w9ZY64AytqT6VaRAjVd0r//MUHNe1TFVQD17p2a3GeCsn7h9PSM5WuqMTI04K3L7WIAAAD//y/lmsgywAteAAAAAElFTkSuQmCC"> -->
+            </div>
+            <div class="index-accepted-content-lower">
+                <div class="index-accepted-content-lower-column index-accepted-content-lower-column-25">
+                    <div class="index-accepted-content-lower-column-field">
+                        <span class="index-accepted-content-lower-column-field-caption">Tanggal Lahir</span>
+                        <span class="index-accepted-content-lower-column-field-value" id="index-accepted-birthday">Loading...</span>
+                    </div>
+                    <div class="index-accepted-content-lower-column-field">
+                        <span class="index-accepted-content-lower-column-field-caption">Sekolah</span>
+                        <span class="index-accepted-content-lower-column-field-value" id="index-accepted-school">Loading...</span>
+                    </div>
+                </div>
+                <div class="index-accepted-content-lower-column index-accepted-content-lower-column-25">
+                    <div class="index-accepted-content-lower-column-field">
+                        <span class="index-accepted-content-lower-column-field-caption">Kabupaten/Kota</span>
+                        <span class="index-accepted-content-lower-column-field-value" id="index-accepted-regency">Loading...</span>
+                    </div>
+                    <div class="index-accepted-content-lower-column-field">
+                        <span class="index-accepted-content-lower-column-field-caption">Provinsi</span>
+                        <span class="index-accepted-content-lower-column-field-value" id="index-accepted-province">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div></div></div>
+    </div></body></html>
