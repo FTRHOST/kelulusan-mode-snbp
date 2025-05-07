@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer Pengumuman</title>
+    <link rel="stylesheet" href="css/timer.css">
+    <link rel="icon" href="img/favicon.ico">
+</head>
+<body>
+    <div id="main" class="main">
+        <div id="main-background" class="main-background"></div>
+        <div id="main-route" class="main-route">
+            <div id="index" class="index">
+                <div id="index-timer" class="index-timer">
+                    <div class="index-timer-timer">
+                        <div class="index-timer-timer-cell">
+                            <div class="index-timer-timer-cell-caption">HARI</div>
+                            <div class="index-timer-timer-cell-value" id="index-days">00</div>
+                        </div>
+                        <div class="index-timer-timer-separator">:</div>
+                        <div class="index-timer-timer-cell">
+                            <div class="index-timer-timer-cell-caption">JAM</div>
+                            <div class="index-timer-timer-cell-value" id="index-hours">00</div>
+                        </div>
+                        <div class="index-timer-timer-separator">:</div>
+                        <div class="index-timer-timer-cell">
+                            <div class="index-timer-timer-cell-caption">MENIT</div>
+                            <div class="index-timer-timer-cell-value" id="index-minutes">00</div>
+                        </div>
+                        <div class="index-timer-timer-separator">:</div>
+                        <div class="index-timer-timer-cell">
+                            <div class="index-timer-timer-cell-caption">DETIK</div>
+                            <div class="index-timer-timer-cell-value" id="index-seconds">00</div>
+                        </div>
+                    </div>
+                    <div class="index-timer-note">
+                        <div class="index-timer-note-event" id="index-event-name"></div>
+                        <div class="index-timer-note-deadline" id="index-event-deadline"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/timer.js"></script>
+</body>
+</html>

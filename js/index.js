@@ -15,7 +15,7 @@ if (form) {
     }
 
     try {
-      const response = await fetch('http://localhost:3000/students/' + nis);
+      const response = await fetch('http://62.72.7.236:3000/students/' + nis);
       if (!response.ok) {
         throw new Error('Student not found');
       }
