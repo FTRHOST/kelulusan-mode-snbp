@@ -4,15 +4,15 @@ import node from '@astrojs/node'; // Aktifkan SSR dengan adapter Node.js
 
 // https://astro.build/config
 export default defineConfig({
+  output: 'static',
   adapter: node({
     mode: 'standalone' // Atau sesuaikan dengan platform deployment (Vercel, Netlify, dll)
   }),
     server: {
-    port: 8005,
-    host: '62.72.7.236',
+    port: 8080,
+    host: true,
     allowedHosts: ['kelulusan.manubanyuputih.id']
   },
-  devToolbar: {
-    enabled: false
-  }
+    site: "https://kelulusan.manubanyuputih.id",
+    base: "/",
 });

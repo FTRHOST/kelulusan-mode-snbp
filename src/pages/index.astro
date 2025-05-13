@@ -1,16 +1,3 @@
 <script>
-(async () => {
-        try {
-            const response = await fetch('/api/dibuka.json');
-            const data = await response.json();
-            const waktuPengumuman = new Date(data.waktu_pengumuman).getTime();
-            const now = new Date().getTime();
-
-            if (now < waktuPengumuman) {
-                window.location.href = "/timer";
-            }
-        } catch (error) {
-            console.error('Gagal mengambil waktu pengumuman:', error);
-        }
-    })();
+window.location.href = "/timer";
   </script>

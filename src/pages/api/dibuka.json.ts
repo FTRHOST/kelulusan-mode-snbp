@@ -1,7 +1,7 @@
 import { AstroError } from 'astro/errors';
 
 export const prerender = false; // Nonaktifkan prerendering untuk SSR
-    const waktuPengumuman = new Date("2025-05-12T21:00:00+07:00").toISOString(); // Ganti sesuai jadwal sebenarnya [[3]]
+    const waktuPengumuman = new Date("2025-05-13T20:30:00+07:00").toISOString(); // Ganti sesuai jadwal sebenarnya [[3]]
 
 // // src/pages/api/pengumuman.json.ts
 // export async function get() {

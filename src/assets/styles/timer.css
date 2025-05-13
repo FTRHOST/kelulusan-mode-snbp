@@ -1,0 +1,239 @@
+@import"https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap";
+
+*{
+    box-sizing:border-box;
+    font-family:"Lato",serif
+}
+/* Menambahkan properti untuk memastikan kontainer utama mengisi layar */
+html, body {
+    height: 100%; /* [[5]] */
+    margin: 0;
+    padding: 0;
+}
+
+/* Menggunakan flexbox untuk memusatkan konten */
+.main {
+    display: flex; /* [[5]] */
+    align-items: center; /* [[5]] */
+    justify-content: center; /* [[5]] */
+    height: 100vh; /* [[5]] */
+    width: 100%;
+}
+
+.main-background{
+    position: static; /* [[5]] */
+    opacity: 1; /* [[5]] */
+    transition: none; /* [[5]] */
+}
+
+.main-route{
+    position:relative;
+    z-index:10;
+    width:100%;
+    min-height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center
+}
+.index{
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Memastikan konten timer selalu di tengah */
+.index-timer {
+    margin: 0 auto; /* [[4]] */
+    text-align: center; /* [[4]] */
+}
+
+@media(min-width: 900px){
+    .index-timer{
+        width:650px;
+        box-shadow:5px 5px 20px rgba(0,0,0,.5)
+    }
+}
+.index-timer-timer{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:flex-end;
+    padding:20px;
+    background-image:linear-gradient(90deg, #0F4174, #06f7b3)
+}
+@media(min-width: 600px){
+    .index-timer-timer{
+        padding:30px
+    }
+}
+.index-timer-timer-cell{
+    display:flex;
+    flex-direction:column;
+    align-items:center
+}
+.index-timer-timer-cell-caption{
+    font-weight:300;
+    color:#fff;
+    letter-spacing:1px;
+    text-align:center;
+    margin-bottom:5px;
+    font-size:.6rem
+}
+@media(orientation: portrait)and (min-width: 360px){
+    .index-timer-timer-cell-caption{
+        font-size:.7rem
+    }
+}
+@media(orientation: portrait)and (min-width: 400px){
+    .index-timer-timer-cell-caption{
+        font-size:.8rem
+    }
+}
+@media(orientation: portrait)and (min-width: 600px){
+    .index-timer-timer-cell-caption{
+        font-size:.9rem
+    }
+}
+@media(orientation: portrait)and (min-width: 900px){
+    .index-timer-timer-cell-caption{
+        font-size:.9rem
+    }
+}
+@media(orientation: landscape)and (min-width: 900px){
+    .index-timer-timer-cell-caption{
+        font-size:.9rem
+    }
+}
+@media(orientation: landscape)and (min-width: 1200px){
+    .index-timer-timer-cell-caption{
+        font-size:.9rem
+    }
+}
+@media(orientation: landscape)and (min-width: 1500px){
+    .index-timer-timer-cell-caption{
+        font-size:.9rem
+    }
+}
+@media(orientation: landscape)and (min-width: 1800px){
+    .index-timer-timer-cell-caption{
+        font-size:.9rem
+    }
+}
+.index-timer-timer-cell-value{
+    font-size:1.8rem;
+    text-shadow:1px 1px 5px rgba(0,0,0,.2);
+    font-weight:900;
+    color:#fff
+}
+@media(orientation: portrait)and (min-width: 360px){
+    .index-timer-timer-cell-value{
+        font-size:2.1rem
+    }
+}
+@media(orientation: portrait)and (min-width: 400px){
+    .index-timer-timer-cell-value{
+        font-size:2.1rem
+    }
+}
+@media(orientation: portrait)and (min-width: 600px){
+    .index-timer-timer-cell-value{
+        font-size:2.5rem
+    }
+}
+@media(orientation: portrait)and (min-width: 900px){
+    .index-timer-timer-cell-value{
+        font-size:3.5rem
+    }
+}
+@media(orientation: landscape)and (min-width: 900px){
+    .index-timer-timer-cell-value{
+        font-size:3.5rem
+    }
+}
+@media(orientation: landscape)and (min-width: 1200px){
+    .index-timer-timer-cell-value{
+        font-size:3.5rem
+    }
+}
+@media(orientation: landscape)and (min-width: 1500px){
+    .index-timer-timer-cell-value{
+        font-size:3.5rem
+    }
+}
+@media(orientation: landscape)and (min-width: 1800px){
+    .index-timer-timer-cell-value{
+        font-size:3.5rem
+    }
+}
+.index-timer-timer-separator{
+    font-size:1.8rem;
+    text-shadow:1px 1px 5px rgba(0,0,0,.2);
+    font-weight:900;
+    color:#fff
+}
+@media(orientation: portrait)and (min-width: 360px){
+    .index-timer-timer-separator{
+        font-size:2.1rem
+    }
+}
+@media(orientation: portrait)and (min-width: 400px){
+    .index-timer-timer-separator{
+        font-size:2.1rem
+    }
+}
+@media(orientation: portrait)and (min-width: 600px){
+    .index-timer-timer-separator{
+        font-size:2.5rem
+    }
+}
+@media(orientation: portrait)and (min-width: 900px){
+    .index-timer-timer-separator{
+        font-size:3.5rem
+    }
+}
+@media(orientation: landscape)and (min-width: 900px){
+    .index-timer-timer-separator{
+        font-size:3.5rem
+    }
+}
+@media(orientation: landscape)and (min-width: 1200px){
+    .index-timer-timer-separator{
+        font-size:3.5rem
+    }
+}
+@media(orientation: landscape)and (min-width: 1500px){
+    .index-timer-timer-separator{
+        font-size:3.5rem
+    }
+}
+@media(orientation: landscape)and (min-width: 1800px){
+    .index-timer-timer-separator{
+        font-size:3.5rem
+    }
+}
+.index-timer-note{
+    display:flex;
+    padding:20px;
+    background-color:#fff;
+    flex-direction:column;
+    justify-content:flex-start
+}
+@media(min-width: 900px){
+    .index-timer-note{
+        flex-direction:row;
+        justify-content:space-between
+    }
+}
+.index-timer-note-event{
+    font-size:.9rem;
+    letter-spacing:1px;
+    font-weight:700
+}
+.index-timer-note-deadline{
+    font-size:.9rem;
+    letter-spacing:1px;
+    font-weight:300
+}
