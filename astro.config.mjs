@@ -8,7 +8,7 @@ export default defineConfig({
     mode: 'standalone' // Atau sesuaikan dengan platform deployment (Vercel, Netlify, dll)
   }),
     server: {
-    port: 80,
+    port: 8005,
     host: '62.72.7.236',
     allowedHosts: ['kelulusan.manubanyuputih.id']
   },
