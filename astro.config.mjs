@@ -8,9 +8,9 @@ export default defineConfig({
     mode: 'standalone' // Atau sesuaikan dengan platform deployment (Vercel, Netlify, dll)
   }),
     server: {
-    port: 8080,
+    port: 80,
     host: '62.72.7.236',
-    allowedHosts: ['manubanyuputih.id']
+    allowedHosts: ['kelulusan.manubanyuputih.id']
   },
   devToolbar: {
     enabled: false
