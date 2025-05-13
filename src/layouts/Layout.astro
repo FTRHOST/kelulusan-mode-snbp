@@ -1,11 +1,23 @@
+---
+import sitemeta from '../components/sitemeta.astro';
+
+const {
+  title = 'Astro',
+  description = 'A starter project with accessibility features using Astro static site builder. Contains accessible landmarks, skip links, a dark mode color scheme, better focus outline and keyboard menu navigation.',
+  url = Astro.site,
+  image = 'social-preview-image.png',
+  author = 'Mark Teekman',
+} = Astro.props
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/png" href="lulus/src/assets/img/logo-manu.png" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<sitemeta title={title}>
 	</head>
 	<body>
 		<slot />

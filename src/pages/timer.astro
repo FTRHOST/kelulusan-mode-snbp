@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <title>Timer Pengumuman</title>
+    <link rel="stylesheet" href="css/timer.css">
+    <style>
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="index-timer">
+            <div class="index-timer-timer">
+                <div class="index-timer-timer-cell">
+                    <div class="index-timer-timer-cell-caption">HARI</div>
+                    <div class="index-timer-timer-cell-value" id="index-days">00</div>
+                </div>
+                <div class="index-timer-timer-separator">:</div>
+                <div class="index-timer-timer-cell">
+                    <div class="index-timer-timer-cell-caption">JAM</div>
+                    <div class="index-timer-timer-cell-value" id="index-hours">00</div>
+                </div>
+                <div class="index-timer-timer-separator">:</div>
+                <div class="index-timer-timer-cell">
+                    <div class="index-timer-timer-cell-caption">MENIT</div>
+                    <div class="index-timer-timer-cell-value" id="index-minutes">00</div>
+                </div>
+                <div class="index-timer-timer-separator">:</div>
+                <div class="index-timer-timer-cell">
+                    <div class="index-timer-timer-cell-caption">DETIK</div>
+                    <div class="index-timer-timer-cell-value" id="index-seconds">00</div>
+                </div>
+            </div>
+            <div class="index-timer-note">
+                <div class="index-timer-note-event" id="index-event-name">Pengumuman Kelulusan</div>
+                <div class="index-timer-note-deadline" id="index-event-deadline">MA NU 01 Banyuputih</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let deadline = null;
+let timerInterval = null; // Simpan ID interval timer
+let serverStartTime = null;
+
+async function fetchServerTime() {
+    try {
+        const response = await fetch('/api/server-time.json');
+        const data = await response.json();
+        const serverTime = new Date(data.serverTime).getTime();
+        console.log('Waktu server:', new Date(serverTime));
+        return serverTime;
+    } catch (error) {
+        console.error('Gagal mengambil waktu server:', error);
+        displayErrorMessage('Gagal mengambil waktu server. Coba lagi nanti.'); // Contoh menampilkan pesan kesalahan
+        return null;
+    }
+}
+
+async function fetchDeadline() {
+    try {
+        const response = await fetch('/api/dibuka.json');
+        const data = await response.json();
+        deadline = new Date(data.waktu_pengumuman).getTime();
+        console.log('Waktu pengumuman:', new Date(deadline));
+        return deadline;
+    } catch (error) {
+        console.error('Gagal mengambil waktu pengumuman:', error);
+        displayErrorMessage('Gagal mengambil waktu pengumuman. Coba lagi nanti.'); // Contoh menampilkan pesan kesalahan
+        return null;
+    }
+}
+
+function calculateTimeDifference(serverTime, deadline) {
+    if (serverTime === null || deadline === null) {
+        return null; // Atau nilai lain yang menandakan kesalahan
+    }
+    return deadline - serverTime;
+}
+
+function updateTimerDisplay(days, hours, minutes, seconds) {
+    document.getElementById("index-days").textContent = String(days).padStart(2, '0');
+    document.getElementById("index-hours").textContent = String(hours).padStart(2, '0');
+    document.getElementById("index-minutes").textContent = String(minutes).padStart(2, '0');
+    document.getElementById("index-seconds").textContent = String(seconds).padStart(2, '0');
+}
+
+function startTimer(deadline, startTime) {
+    if (timerInterval) {
+        clearInterval(timerInterval); // Hentikan timer sebelumnya jika ada
+    }
+
+    timerInterval = setInterval(() => {
+        const now = new Date(startTime + (Date.now() - startTime)); // Simulasi penambahan waktu berdasarkan server
+        const distance = deadline - now.getTime();
+        console.log('Waktu saat ini (server-synced):', now);
+        console.log('Sisa waktu:', distance);
+
+        if (distance <= 0) {
+            clearInterval(timerInterval);
+            window.location.href = "/pengumuman";
+            return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        updateTimerDisplay(days, hours, minutes, seconds);
+
+    }, 1000);
+}
+
+async function initializeCountdown() {
+    serverStartTime = await fetchServerTime();
+    if (serverStartTime === null) {
+        return; // Hentikan inisialisasi jika gagal mengambil waktu server
+    }
+
+    const deadlineTime = await fetchDeadline();
+    if (deadlineTime === null) {
+        return; // Hentikan inisialisasi jika gagal mengambil waktu pengumuman
+    }
+
+    const timeDifference = calculateTimeDifference(serverStartTime, deadlineTime);
+    if (timeDifference === null) {
+        return; // Hentikan inisialisasi jika terjadi kesalahan perhitungan
+    }
+
+    if (timeDifference <= 0) {
+        window.location.href = "/pengumuman";
+        return;
+    }
+
+    startTimer(deadlineTime, serverStartTime);
+}
+
+function displayErrorMessage(message) {
+    // Implementasikan cara menampilkan pesan kesalahan kepada pengguna (misalnya, menggunakan elemen HTML)
+    console.error(message); // Contoh: tampilkan di konsol
+    // document.getElementById('error-message').textContent = message; // Contoh: tampilkan di elemen HTML dengan ID 'error-message'
+}
+
+initializeCountdown();
+    </script>
+</body>
+</html>
