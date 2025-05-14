@@ -39,7 +39,8 @@ export const students = [
         school: "MA NU 01 BANYUPUTIH",
         regency: "Kab. Batang",
         province: "Prov. Jawa Tengah"
-      },{
+      },
+      {
         nis: "5982",
         name: "Muhamad Irzadul Ibad",
         statusKelulusan: 0,
