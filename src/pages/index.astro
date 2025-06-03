@@ -1,3 +1,18 @@
 <script>
-window.location.href = "/timer";
+(async () => {
+    try {
+        const response = await fetch('/api/config/time.json');
+        const data = await response.json();
+        const waktuPengumuman = new Date(data.waktu_pengumuman_resmi).getTime();
+        const now = new Date().getTime();
+
+        if (now < waktuPengumuman) {
+            window.location.href = "/timer";
+        } else {
+            window.location.href = "/pengumuman";
+        }
+    } catch (error) {
+        console.error('Gagal mengambil waktu pengumuman:', error);
+    }
+})();
 </script>

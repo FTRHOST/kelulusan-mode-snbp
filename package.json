@@ -9,7 +9,13 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/db": "^0.14.14",
     "@astrojs/node": "^9.2.1",
-    "astro": "^5.7.12"
+    "astro": "^5.7.12",
+    "dotenv": "^16.5.0",
+    "mysql2": "^3.14.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.18"
   }
 }

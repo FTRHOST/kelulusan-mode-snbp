@@ -57,9 +57,9 @@ async function fetchServerTime() {
 
 async function fetchDeadline() {
     try {
-        const response = await fetch('/api/dibuka.json');
+        const response = await fetch('/api/config/time.json');
         const data = await response.json();
-        deadline = new Date(data.waktu_pengumuman).getTime();
+        deadline = new Date(data.waktu_pengumuman_resmi).getTime();
         console.log('Waktu pengumuman:', new Date(deadline));
         return deadline;
     } catch (error) {

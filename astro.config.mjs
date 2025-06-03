@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import node from '@astrojs/node'; // Aktifkan SSR dengan adapter Node.js
+import db from '@astrojs/db';
 
 // https://astro.build/config
 export default defineConfig({
@@ -15,4 +16,5 @@ export default defineConfig({
   },
     site: "https://kelulusan.manubanyuputih.id",
     base: "/",
+    integrations: [db()],
 });

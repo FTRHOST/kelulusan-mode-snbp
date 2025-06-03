@@ -2,9 +2,9 @@ export const prerender = false;
 
 (async () => {
     try {
-        const response = await fetch('/api/dibuka.json');
+        const response = await fetch('/api/config/time.json');
         const data = await response.json();
-        const waktuPengumuman = new Date(data.waktu_pengumuman).getTime();
+        const waktuPengumuman = new Date(data.waktu_waktu_pengumuman_resmi).getTime();
         const now = new Date().getTime();
 
         if (now < waktuPengumuman) {
