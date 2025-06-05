@@ -44,7 +44,7 @@ async function fetchStudentData(nis) {
       }
       
       // Update DOM dengan data siswa
-      document.getElementById('index-accepted-nisn').textContent = 'NISN ' + student.nis;
+      document.getElementById('index-accepted-nisn').textContent = 'NIS ' + student.nis;
       document.getElementById('index-accepted-name').textContent = student.name;
       document.getElementById('index-accepted-program').textContent = student.jurusan;
       document.getElementById('index-accepted-birthday').textContent = formatDateToDDMMYYYY(student.birthday);
