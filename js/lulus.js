@@ -1,10 +1,10 @@
 export const prerender = false;
 
-(async () => {
+async function fetchAnnouncementTime() {
     try {
-        const response = await fetch('/api/config/time.json');
+        const response = await fetch('https://3010-firebase-api-1747919070828.cluster-ejd22kqny5htuv5dfowoyipt52.cloudworkstations.dev/api/waktu-pengumuman');
         const data = await response.json();
-        const waktuPengumuman = new Date(data.waktu_waktu_pengumuman_resmi).getTime();
+        const waktuPengumuman = new Date(data.waktu_pengumuman_resmi).getTime();
         const now = new Date().getTime();
 
         if (now < waktuPengumuman) {
@@ -13,22 +13,33 @@ export const prerender = false;
     } catch (error) {
         console.error('Gagal mengambil waktu pengumuman:', error);
     }
-})();
+}
+
+// Call once on page load
+fetchAnnouncementTime();
+// Poll every 2 seconds
+setInterval(fetchAnnouncementTime, 2000);
 
 async function fetchStudentData(nis) {
     try {
-      // Gunakan path relatif ke endpoint Astro
-      const response = await fetch(`/api/students/${encodeURIComponent(nis)}.json`); 
+      // Gunakan REST API baru dari https://api.manubanyuputih.id/api/
+      const response = await fetch(`https://api.manubanyuputih.id/api/kelulusan`); 
       if (!response.ok) {
         throw new Error('Student not found');
       }
-      const student = await response.json();
+      const result = await response.json();
+
+      // Cari data siswa berdasarkan nis
+      const student = result.data.find(s => s.nis === nis);
+      if (!student) {
+        throw new Error('Student not found in data');
+      }
       
       // Update DOM dengan data siswa
       document.getElementById('index-accepted-nisn').textContent = 'NISN ' + student.nis;
       document.getElementById('index-accepted-name').textContent = student.name;
       document.getElementById('index-accepted-program').textContent = student.jurusan;
-      document.getElementById('index-accepted-birthday').textContent = student.birthday;
+      document.getElementById('index-accepted-birthday').textContent = new Date(student.birthday).toLocaleDateString();
       document.getElementById('index-accepted-school').textContent = student.school;
       document.getElementById('index-accepted-regency').textContent = student.regency;
       document.getElementById('index-accepted-province').textContent = student.province;
@@ -46,6 +57,10 @@ async function fetchStudentData(nis) {
   const nis = getQueryParam('nis');
   if (nis) {
     fetchStudentData(nis);
+    // Polling every 3 seconds to update student data automatically
+    setInterval(() => {
+      fetchStudentData(nis);
+    }, 3000);
   } else {
     alert('NIS tidak ditemukan di URL.');
   }
