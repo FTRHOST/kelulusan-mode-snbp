@@ -22,7 +22,7 @@ async function fetchServerTime() {
 
 async function fetchDeadline() {
     try {
-        const response = await fetch('https://api.manubanyuputih.id/api/waktu-server');
+        const response = await fetch('https://api.manubanyuputih.id/api/waktu-pengumuman');
         const data = await response.json();
         const newDeadline = new Date(data.waktu_pengumuman_resmi).getTime();
         console.log('Waktu pengumuman:', new Date(newDeadline));

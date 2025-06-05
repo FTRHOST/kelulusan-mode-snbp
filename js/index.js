@@ -1,7 +1,7 @@
     // Waktu akhir timer
     async function fetchAnnouncementTime() {
       try {
-          const response = await fetch('https://api.manubanyuputih.id/api/waktu-server');
+          const response = await fetch('https://api.manubanyuputih.id/api/waktu-pengumuman');
           const data = await response.json();
           const waktuPengumuman = new Date(data.waktu_pengumuman_resmi).getTime();
           const now = new Date().getTime();

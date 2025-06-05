@@ -20,6 +20,14 @@ fetchAnnouncementTime();
 // Poll every 2 seconds
 setInterval(fetchAnnouncementTime, 2000);
 
+function formatDateToDDMMYYYY(dateString) {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+}
+
 async function fetchStudentData(nis) {
     try {
       // Gunakan REST API baru dari https://api.manubanyuputih.id/api/
@@ -39,7 +47,7 @@ async function fetchStudentData(nis) {
       document.getElementById('index-accepted-nisn').textContent = 'NISN ' + student.nis;
       document.getElementById('index-accepted-name').textContent = student.name;
       document.getElementById('index-accepted-program').textContent = student.jurusan;
-      document.getElementById('index-accepted-birthday').textContent = new Date(student.birthday).toLocaleDateString();
+      document.getElementById('index-accepted-birthday').textContent = formatDateToDDMMYYYY(student.birthday);
       document.getElementById('index-accepted-school').textContent = student.school;
       document.getElementById('index-accepted-regency').textContent = student.regency;
       document.getElementById('index-accepted-province').textContent = student.province;
