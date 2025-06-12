@@ -1,18 +1,25 @@
 export const prerender = false;
 
 async function fetchAnnouncementTime() {
-    try {
-        const response = await fetch('https://3010-firebase-api-1747919070828.cluster-ejd22kqny5htuv5dfowoyipt52.cloudworkstations.dev/api/waktu-pengumuman');
-        const data = await response.json();
-        const waktuPengumuman = new Date(data.waktu_pengumuman_resmi).getTime();
-        const now = new Date().getTime();
+  try {
+    // Fetch server time from local API to avoid timezone issues
+    const serverTimeResponse = await fetch('https://3010-firebase-api-1747919070828.cluster-ejd22kqny5htuv5dfowoyipt52.cloudworkstations.dev/api/waktu-server');
+    const serverTimeData = await serverTimeResponse.json();
+    console.log('Raw serverTimeData:', serverTimeData);
+    const serverTime = new Date(serverTimeData.server_time).getTime();
 
-        if (now < waktuPengumuman) {
-            window.location.href = "/timer";
-        }
-    } catch (error) {
-        console.error('Gagal mengambil waktu pengumuman:', error);
+    // Fetch official announcement time
+    const response = await fetch('https://3010-firebase-api-1747919070828.cluster-ejd22kqny5htuv5dfowoyipt52.cloudworkstations.dev/api/waktu-pengumuman');
+    const data = await response.json();
+    const waktuPengumuman = new Date(data.data.waktu_pengumuman_resmi).getTime();
+
+    console.log('serverTime:', new Date(serverTime).toISOString(), 'waktuPengumuman:', new Date(waktuPengumuman).toISOString());
+    if (serverTime < waktuPengumuman) {
+        window.location.href = "/timer";
     }
+} catch (error) {
+    console.error('Gagal mengambil waktu pengumuman atau waktu server:', error);
+}
 }
 
 // Call once on page load
@@ -31,7 +38,7 @@ function formatDateToDDMMYYYY(dateString) {
 async function fetchStudentData(nis) {
     try {
       // Gunakan REST API baru dari https://api.manubanyuputih.id/api/
-      const response = await fetch(`https://api.manubanyuputih.id/api/kelulusan`); 
+      const response = await fetch(`https://3010-firebase-api-1747919070828.cluster-ejd22kqny5htuv5dfowoyipt52.cloudworkstations.dev/api/kelulusan`); 
       if (!response.ok) {
         throw new Error('Student not found');
       }

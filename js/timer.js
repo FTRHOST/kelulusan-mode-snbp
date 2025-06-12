@@ -5,12 +5,13 @@ let timerInterval = null; // Simpan ID interval timer
 let serverStartTime = null;
 let lastDeadline = null;
 let lastServerTime = null;
+let timerStartPerfTime = null; // performance.now() at timer start
 
 async function fetchServerTime() {
     try {
-        const response = await fetch('/api/server-time.json');
+        const response = await fetch('https://3010-firebase-api-1747919070828.cluster-ejd22kqny5htuv5dfowoyipt52.cloudworkstations.dev/api/waktu-server');
         const data = await response.json();
-        const serverTime = new Date(data.serverTime).getTime();
+        const serverTime = new Date(data.server_time).getTime();
         console.log('Waktu server:', new Date(serverTime));
         return serverTime;
     } catch (error) {
@@ -22,9 +23,9 @@ async function fetchServerTime() {
 
 async function fetchDeadline() {
     try {
-        const response = await fetch('https://api.manubanyuputih.id/api/waktu-pengumuman');
+        const response = await fetch('https://3010-firebase-api-1747919070828.cluster-ejd22kqny5htuv5dfowoyipt52.cloudworkstations.dev/api/waktu-pengumuman');
         const data = await response.json();
-        const newDeadline = new Date(data.waktu_pengumuman_resmi).getTime();
+        const newDeadline = new Date(data.data.waktu_pengumuman_resmi).getTime();
         console.log('Waktu pengumuman:', new Date(newDeadline));
         return newDeadline;
     } catch (error) {
@@ -54,8 +55,11 @@ function startTimer(deadline, startTime) {
         clearInterval(timerInterval); // Hentikan timer sebelumnya jika ada
     }
 
+    timerStartPerfTime = performance.now();
+
     timerInterval = setInterval(() => {
-        const now = new Date(startTime + (Date.now() - startTime)); // Simulasi penambahan waktu berdasarkan server
+        const elapsed = performance.now() - timerStartPerfTime;
+        const now = new Date(startTime + elapsed);
         const distance = deadline - now.getTime();
         console.log('Waktu saat ini (server-synced):', now);
         console.log('Sisa waktu:', distance);
