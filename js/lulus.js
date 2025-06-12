@@ -64,18 +64,19 @@ async function fetchStudentData(nis) {
     }
   }
   
-  function getQueryParam(param) {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get(param);
-  }
-  
-  const nis = getQueryParam('nis');
-  if (nis) {
-    fetchStudentData(nis);
-    // Polling every 3 seconds to update student data automatically
-    setInterval(() => {
-      fetchStudentData(nis);
-    }, 3000);
-  } else {
-    alert('NIS tidak ditemukan di URL.');
-  }
+function fetchStudentDataFromSession() {
+    const nis = sessionStorage.getItem('studentNIS');
+    if (nis) {
+        fetchStudentData(nis);
+        // Polling every 3 seconds to update student data automatically
+        setInterval(() => {
+            fetchStudentData(nis);
+        }, 3000);
+    } else {
+        alert('NIS tidak ditemukan. Silakan kembali ke halaman utama dan masukkan NIS Anda.');
+        // Optionally redirect to main page
+        // window.location.href = '/';
+    }
+}
+
+fetchStudentDataFromSession();
