@@ -56,11 +56,11 @@ setInterval(fetchAnnouncementTime, 2000);
                 if (student.status_kelulusan === 1) {
                     // Store student NIS in sessionStorage to prevent URL tampering
                     sessionStorage.setItem('studentNIS', student.nis);
-                    window.location.href = '/lulus/';
+                    window.location.href = '/lulus';
                 } else {
                     // Store student NIS in sessionStorage to prevent URL tampering
                     sessionStorage.setItem('studentNIS', student.nis);
-                    window.location.href = '/tidaklulus/';
+                    window.location.href = '/tidaklulus';
                 }
             } catch (error) {
                 alertEl.textContent = "Data tidak ditemukan. Periksa kembali Nomor Induk Siswa Nasional Anda.";
