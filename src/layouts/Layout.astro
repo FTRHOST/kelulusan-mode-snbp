@@ -1,5 +1,6 @@
 ---
 import sitemeta from '../components/sitemeta.astro';
+import config from "@/config/config.json"
 
 const {
   title = 'MA NU 01 BANYUPUTIH',
@@ -19,10 +20,10 @@ const {
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>{title}</title>
 		<link rel="stylesheet" href="/index.css">
-		<link rel="apple-touch-icon" sizes="180x180" href="/img/logo-manu.svg">
-		<link rel="icon" type="image/png" sizes="32x32" href="/logo-manu.svg">
-		<link rel="icon" type="image/png" sizes="16x16" href="/logo-manu.svg">
-		<link rel="icon" href="/logo-manu.svg">
+		<link rel="apple-touch-icon" sizes="180x180" href={config.logo}>
+		<link rel="icon" type="image/png" sizes="32x32" href={config.logo}>
+		<link rel="icon" type="image/png" sizes="16x16" href={config.logo}>
+		<link rel="icon" href={config.logo}>
 		<style>
 		.hidden {
 			display: none;

@@ -9,7 +9,7 @@ let timerStartPerfTime = null; // performance.now() at timer start
 
 async function fetchServerTime() {
     try {
-        const response = await fetch('https://3010-firebase-api-1747919070828.cluster-ejd22kqny5htuv5dfowoyipt52.cloudworkstations.dev/api/waktu-server');
+        const response = await fetch('https://api.manubanyuputih.id/api/waktu-server');
         const data = await response.json();
         const serverTime = new Date(data.server_time).getTime();
         console.log('Waktu server:', new Date(serverTime));
@@ -23,7 +23,7 @@ async function fetchServerTime() {
 
 async function fetchDeadline() {
     try {
-        const response = await fetch('https://3010-firebase-api-1747919070828.cluster-ejd22kqny5htuv5dfowoyipt52.cloudworkstations.dev/api/waktu-pengumuman');
+        const response = await fetch('https://api.manubanyuputih.id/api/waktu-pengumuman');
         const data = await response.json();
         const newDeadline = new Date(data.data.waktu_pengumuman_resmi).getTime();
         console.log('Waktu pengumuman:', new Date(newDeadline));

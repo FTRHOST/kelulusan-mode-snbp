@@ -1,8 +1,9 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import node from '@astrojs/node'; // Aktifkan SSR dengan adapter Node.js
+import react from '@astrojs/react';
 
-import tailwindcss from '@tailwindcss/vite';
+import tailwind from '@astrojs/tailwind'; // <-- IMPORT BARIS INI
 
 // https://astro.build/config
 export default defineConfig({
@@ -20,9 +21,12 @@ export default defineConfig({
 
   site: "https://kelulusan.manubanyuputih.id",
   base: "/",
-  integrations: [],
+  integrations: [react(),
+    tailwind({
+    applyBaseStyles: false,
+  })],
 
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [],
   },
 });

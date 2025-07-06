@@ -1,12 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro"
+import config from "@/config/config.json"
 ---
 <Layout title="Lulus">
     <body id="body"><div id="main" class="main">
         <div id="main-background" class="main-background"></div>
         <div id="main-route" class="main-route"><div id="index" class="index"><div id="index-accepted" class="index-accepted">
         <div class="index-accepted-header">
-            <img src="/logo-manu.svg" alt="Logo" class="index-accepted-header-icon">
+            <img src={config.logo} alt="Logo" class="index-accepted-header-icon">
             <div class="index-accepted-header-title">
                 <h1 class="index-accepted-header-title-text">SELAMAT! ANDA DINYATAKAN LULUS MA NU 01 BANYUPUTIH</h1>
             </div>

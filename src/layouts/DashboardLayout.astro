@@ -1,0 +1,22 @@
+---
+import 'src/styles/tailwind.css';
+interface Props {
+  title: string;
+}
+const { title } = Astro.props;
+import config from "@/config/config.json"
+---
+<!doctype html>
+<html lang="id" class="h-full">
+  <head>
+    <meta charset="UTF-M" />
+    <meta name="description" content="Student Graduation Analytics Dashboard" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href={config.logo} />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="h-full bg-main-bg">
+    <slot />
+  </body>
+</html>

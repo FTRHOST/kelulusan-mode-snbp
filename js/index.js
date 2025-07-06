@@ -2,13 +2,13 @@
 async function fetchAnnouncementTime() {
     try {
         // Fetch server time from local API to avoid timezone issues
-        const serverTimeResponse = await fetch('https://3010-firebase-api-1747919070828.cluster-ejd22kqny5htuv5dfowoyipt52.cloudworkstations.dev/api/waktu-server');
+        const serverTimeResponse = await fetch('https://api.manubanyuputih.id/api/waktu-server');
         const serverTimeData = await serverTimeResponse.json();
         console.log('Raw serverTimeData:', serverTimeData);
         const serverTime = new Date(serverTimeData.server_time).getTime();
 
         // Fetch official announcement time
-        const response = await fetch('https://3010-firebase-api-1747919070828.cluster-ejd22kqny5htuv5dfowoyipt52.cloudworkstations.dev/api/waktu-pengumuman');
+        const response = await fetch('https://api.manubanyuputih.id/api/waktu-pengumuman');
         const data = await response.json();
         const waktuPengumuman = new Date(data.data.waktu_pengumuman_resmi).getTime();
 
@@ -42,7 +42,7 @@ setInterval(fetchAnnouncementTime, 2000);
             }
 
             try {
-                const response = await fetch('https://3010-firebase-api-1747919070828.cluster-ejd22kqny5htuv5dfowoyipt52.cloudworkstations.dev/api/kelulusan');
+                const response = await fetch('https://api.manubanyuputih.id/api/kelulusan');
                 if (!response.ok) {
                     throw new Error('Student not found');
                 }

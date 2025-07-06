@@ -1,6 +1,0 @@
-{
-  "name": "Student Graduation Analytics Dashboard",
-  "description": "A web application to display and analyze student graduation data, including statistics by major, graduation status, and recent student activities.",
-  "requestFramePermissions": [],
-  "prompt": ""
-}

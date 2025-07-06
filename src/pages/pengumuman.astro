@@ -1,6 +1,7 @@
 ---
 //src/pages/pengumuman.astro
 import Layout from "../layouts/Layout.astro"
+import config from "@/config/config.json"
 ---
 <Layout title="Pengumuman Kelulusan">
     <body id="body">
@@ -11,14 +12,14 @@ import Layout from "../layouts/Layout.astro"
                     <div id="index-form" class="index-form">
                         <form class="index-form-content" id="index-form-form">
                             <div class="index-form-content-logo">
-                                <img src="/logo-manu.svg" class="index-form-content-logo-snmptn" alt="Logo">
+                                <img src={config.logo} class="index-form-content-logo-snmptn" alt="Logo">
                             </div>
-                            <h1 class="index-form-content-title">HASIL KELULUSAN MANSABA</h1>
-                            <span class="index-form-content-subtitle">Pengumuman kelulusan bagi siswa MA NU 01 Banyuputih silahkan masukkan Nomor Induk Siswa.</span>
+                            <h1 class="index-form-content-title">{config.judul}</h1>
+                            <span class="index-form-content-subtitle">{config.subjudul}</span>
                             <div class="index-form-content-form">
                                 <div class="index-form-content-form-field">
-                                    <span class="index-form-content-form-field-caption">Nomor Induk Siswa</span>
-                                    <input class="index-form-content-form-field-input" id="index-form-registration-number" type="tel" placeholder="NIS pada kartu memo kelulusan">
+                                    <span class="index-form-content-form-field-caption">{config.placeholderjudul}</span>
+                                    <input class="index-form-content-form-field-input" id="index-form-registration-number" type="tel" placeholder={config.placeholder}>
                                 </div>
                             </div>
                             <span class="index-form-content-alert hidden" id="index-form-alert"></span>

@@ -1,0 +1,10 @@
+{
+    "informasi": "// untuk logo silahkan upload pada folder public dan route /namafile.jpg",
+    "apiBaseUrl": "https://api.manubanyuputih.id",
+    "logoUrl": "https://manu01banyuputih.wordpress.com/wp-content/uploads/2012/12/logo-manu-baru.png?w=211&h=211",
+    "logo": "/logo-manu.png",
+    "judul": "HASIL KELULUSAN MANSABA",
+    "subjudul": "Pengumuman kelulusan bagi siswa MA NU 01 Banyuputih silahkan masukkan Nomor Induk Siswa.",
+    "placeholderjudul": "Nomor Induk Siswa",
+    "placeholder": "NIS pada kartu memo kelulusan"
+  }

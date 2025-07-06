@@ -2,19 +2,21 @@
 (async () => {
     try {
         // Fetch server time from local API to avoid timezone issues
-        const serverTimeResponse = await fetch('https://3010-firebase-api-1747919070828.cluster-ejd22kqny5htuv5dfowoyipt52.cloudworkstations.dev/api/waktu-server');
+        const serverTimeResponse = await fetch('https://api.manubanyuputih.id/api/waktu-server');
         const serverTimeData = await serverTimeResponse.json();
         console.log('Raw serverTimeData:', serverTimeData);
         const serverTime = new Date(serverTimeData.server_time).getTime();
 
         // Fetch official announcement time
-        const response = await fetch('https://3010-firebase-api-1747919070828.cluster-ejd22kqny5htuv5dfowoyipt52.cloudworkstations.dev/api/waktu-pengumuman');
+        const response = await fetch('https://api.manubanyuputih.id/api/waktu-pengumuman');
         const data = await response.json();
         const waktuPengumuman = new Date(data.data.waktu_pengumuman_resmi).getTime();
 
         console.log('serverTime:', new Date(serverTime).toISOString(), 'waktuPengumuman:', new Date(waktuPengumuman).toISOString());
         if (serverTime < waktuPengumuman) {
             window.location.href = "/timer";
+        } else {
+ window.location.href = "/pengumuman";
         }
     } catch (error) {
         console.error('Gagal mengambil waktu pengumuman atau waktu server:', error);
